@@ -3,7 +3,7 @@
  */
 const CONFIG = {
   imageUrl: "images/tree.png", 
-  cols: 240,                   
+  cols: 180,                   
   fontPx: 4,                   
   charAspect: 1.4,             
   densitySymbols: [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@", "█", "="]
@@ -50,7 +50,7 @@ async function renderAscii() {
   );
 
   // Configure grid columns
-  wrapper.style.gridTemplateColumns = `repeat(${cols}, 1ch)`;
+  wrapper.style.gridTemplateColumns = `repeat(${cols}, ${CONFIG.fontPx}px)`;
   wrapper.innerHTML = "";
 
   // Draw image to small canvas
