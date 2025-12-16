@@ -11,18 +11,14 @@ body {
   position: relative;
   width: fit-content;
   height: fit-content;
-
-  /* noticeably left, but not extreme */
-  margin-left: 0vw;
-
-  /* small vertical offset without forcing scroll */
+  margin: 0 auto;
   margin-top: 4vh;
-
+  transform: translate(-27vw, -4vh); /* left + down */
   pointer-events: none;
 }
 @media (max-width: 600px) {
   #container {
-    margin-left: 4vw;
+    margin-left: 0vw;
     margin-top: 2vh;
   }
 }

@@ -21,11 +21,11 @@ function getSymbolIndex(brightness) {
   );
 }
 
-function createSymbol(char) {
+function createSymbol(char, fontPx) {
   const div = document.createElement("div");
   div.className = "symbol";
   div.textContent = char;
-  div.style.fontSize = CONFIG.fontPx + "px";
+  div.style.fontSize = fontPx + "px";
   return div;
 }
 
@@ -44,7 +44,8 @@ async function renderAscii() {
   });
 
   const isMobile = window.matchMedia("(max-width: 600px)").matches;
-  const cols = isMobile ? 120 : CONFIG.cols;
+  const cols = CONFIG.cols;                 // keep same detail everywhere
+  const fontPx = isMobile ? 2.6 : CONFIG.fontPx;  // smaller chars on mobile
   const imgAspect = img.naturalHeight / img.naturalWidth;
 
   // Correct for non-square characters
@@ -54,7 +55,7 @@ async function renderAscii() {
   );
 
   // Configure grid columns
-  wrapper.style.gridTemplateColumns = `repeat(${cols}, ${CONFIG.fontPx}px)`;
+  wrapper.style.gridTemplateColumns = `repeat(${cols}, ${fontPx}px)`;
   wrapper.innerHTML = "";
 
   // Draw image to small canvas
@@ -74,28 +75,33 @@ async function renderAscii() {
     const brightness = (r + g + b) / 3;
 
     const char = CONFIG.densitySymbols[getSymbolIndex(brightness)];
-    frag.appendChild(createSymbol(char));
+    frag.appendChild(createSymbol(char, fontPx));
   }
 
   wrapper.appendChild(frag);
 
-  // ---- Fit-to-viewport scaling (keeps full tree visible at 100% zoom) ----
+  // ---- Fit-to-viewport scaling (scale wrapper so container can be translated in CSS) ----
   const container = document.getElementById("container");
 
-  // Reset any previous scale to measure the natural size
-  container.style.transform = "none";
-  container.style.transformOrigin = "top left";
+  // Reset wrapper transform for accurate measurement
+  wrapper.style.transform = "none";
+  wrapper.style.transformOrigin = "top left";
 
-  const rect = container.getBoundingClientRect();
-  const padding = 24; // breathing room
+  const rect = wrapper.getBoundingClientRect();
+  const padding = 24;
 
   const scaleX = (window.innerWidth - padding * 2) / rect.width;
   const scaleY = (window.innerHeight - padding * 2) / rect.height;
 
-  // Don’t upscale above 1 (keeps it crisp and predictable)
+  // Don’t upscale above 1
   const scale = Math.min(scaleX, scaleY, 1);
 
-  container.style.transform = `scale(${scale})`;
+  // Apply scale to the wrapper (NOT the container)
+  wrapper.style.transform = `scale(${scale})`;
+
+  // Shrink container footprint so you don't get unnecessary scrolling
+  container.style.width = `${rect.width * scale}px`;
+  container.style.height = `${rect.height * scale}px`;
 }
 
 let resizeTimer = null;
