@@ -42,3 +42,29 @@ body {
   line-height: 1;
   color: #000;
 }
+
+#site-name {
+  font-size: 28px;                 
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  /* Palatino-like serif stack */
+  font-family:
+    "Palatino Linotype",
+    Palatino,
+    "Book Antiqua",
+    "Libre Baskerville",
+    "Times New Roman",
+    serif;
+
+  margin-left: 0vw;
+  margin-top: 12px;
+
+  text-align: center;
+}
+@media (max-width: 600px) {
+  #site-name {
+    font-size: 22px;
+    margin-left: 4vw;
+  }
+}
