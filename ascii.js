@@ -2,14 +2,11 @@
  * ASCII image configuration
  */
 const CONFIG = {
-  imageUrl: "images/tree.png", 
-  cols: 200,                   
-  fontPx: 3.2,                   
-  charAspect: 1.2,             
+  imageUrl: "images/tree.png",
+  cols: 200,
+  fontPx: 3.2,
+  charAspect: 1.2,
   densitySymbols: [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "&", "▒", "░"]
-  /** 
-  [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@", "█", "="]
-  */
 };
 
 /**
@@ -29,42 +26,51 @@ function createSymbol(char, fontPx) {
   return div;
 }
 
-async function renderAscii() {
-  const wrapper = document.getElementById("art-wrapper");
-  const container = document.getElementById("container");
+/**
+ * Render an image as ASCII into a specific wrapper/container.
+ */
+async function renderAsciiTo({
+  wrapperId,
+  containerId,
+  imageUrl,
+  extraScale = 1,
+  colsOverride = null
+}) {
+  const wrapper = document.getElementById(wrapperId);
+  const container = document.getElementById(containerId);
   if (!wrapper || !container) return;
 
-  // Hide while building + scaling (prevents the snap/jump)
   container.classList.remove("is-ready");
 
   const img = new Image();
   img.crossOrigin = "anonymous";
-  img.src = CONFIG.imageUrl;
+  img.src = imageUrl;
 
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve) => {
     img.onload = resolve;
-    img.onerror = () =>
-      reject(new Error("Failed to load image. Check imageUrl."));
+    img.onerror = resolve;
   });
 
+  if (!img.naturalWidth) {
+    container.classList.add("is-ready");
+    console.error("Failed to load:", imageUrl);
+    return;
+  }
+
   const isMobile = window.matchMedia("(max-width: 600px)").matches;
-  const cols = CONFIG.cols;                 // keep same detail everywhere
-  const fontPx = isMobile ? 2.6 : CONFIG.fontPx;  // smaller chars on mobile
+
+  const cols = colsOverride ?? CONFIG.cols;
+  const fontPx = isMobile ? 2.6 : CONFIG.fontPx;
   const imgAspect = img.naturalHeight / img.naturalWidth;
 
-  // Correct for non-square characters
   const rows = Math.max(
     1,
     Math.round(cols * imgAspect * (1 / CONFIG.charAspect))
-
-
   );
 
-  // Configure grid columns
   wrapper.style.gridTemplateColumns = `repeat(${cols}, ${fontPx}px)`;
   wrapper.innerHTML = "";
 
-  // Draw image to small canvas
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d", { willReadFrequently: true });
   canvas.width = cols;
@@ -79,14 +85,12 @@ async function renderAscii() {
     const g = data[i * 4 + 1];
     const b = data[i * 4 + 2];
     const brightness = (r + g + b) / 3;
-
     const char = CONFIG.densitySymbols[getSymbolIndex(brightness)];
     frag.appendChild(createSymbol(char, fontPx));
   }
 
   wrapper.appendChild(frag);
 
-  // Reset wrapper transform for accurate measurement
   wrapper.style.transform = "none";
   wrapper.style.transformOrigin = "top left";
 
@@ -96,20 +100,42 @@ async function renderAscii() {
   const scaleX = (window.innerWidth - padding * 2) / rect.width;
   const scaleY = (window.innerHeight - padding * 2) / rect.height;
 
-  // Don’t upscale above 1
-  const scale = Math.min(scaleX, scaleY, 1);
+  const baseScale = Math.min(scaleX, scaleY, 1);
+  const scale = baseScale * extraScale;
 
-  // Apply scale to the wrapper (NOT the container)
   wrapper.style.transform = `scale(${scale})`;
 
-  // Shrink container footprint so you don't get unnecessary scrolling
   container.style.width = `${rect.width * scale}px`;
   container.style.height = `${rect.height * scale}px`;
-  // Reveal after final size/scale is applied to the DOM
+
   requestAnimationFrame(() => {
     container.classList.add("is-ready");
   });
-  
+}
+
+/**
+ * Render BOTH images
+ */
+function renderAll() {
+  const isMobile = window.matchMedia("(max-width: 600px)").matches;
+
+  return Promise.allSettled([
+    // Tree (original resolution)
+    renderAsciiTo({
+      wrapperId: "art-wrapper",
+      containerId: "container",
+      imageUrl: CONFIG.imageUrl
+    }),
+
+    // Second image (higher detail, mobile-safe)
+    renderAsciiTo({
+      wrapperId: "art-wrapper-2",
+      containerId: "container-2",
+      imageUrl: "images/mountain.png",
+      extraScale: isMobile ? 1 : 1,
+      colsOverride: isMobile ? 300 : 350
+    })
+  ]);
 }
 
 let resizeTimer = null;
@@ -117,13 +143,15 @@ let resizeTimer = null;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    renderAscii().catch(console.error);
+    renderAll().catch(console.error);
   }, 150);
 });
 
 /* Start once DOM is ready */
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", renderAscii);
+  document.addEventListener("DOMContentLoaded", () => {
+    renderAll().catch(console.error);
+  });
 } else {
-  renderAscii();
+  renderAll().catch(console.error);
 }
