@@ -12,15 +12,20 @@ body {
   width: fit-content;
   height: fit-content;
 
-  /* slightly left of center */
-  margin-left: -1vw;
+  /* noticeably left, but not extreme */
+  margin-left: 0vw;
 
-  /* small vertical offset, not viewport-based */
-  margin-top: 3vh;
+  /* small vertical offset without forcing scroll */
+  margin-top: 4vh;
 
   pointer-events: none;
 }
-
+@media (max-width: 600px) {
+  #container {
+    margin-left: 4vw;
+    margin-top: 2vh;
+  }
+}
 
 /* ASCII grid */
 #art-wrapper {

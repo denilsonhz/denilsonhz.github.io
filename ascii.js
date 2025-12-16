@@ -43,7 +43,8 @@ async function renderAscii() {
       reject(new Error("Failed to load image. Check imageUrl."));
   });
 
-  const cols = CONFIG.cols;
+  const isMobile = window.matchMedia("(max-width: 600px)").matches;
+  const cols = isMobile ? 120 : CONFIG.cols;
   const imgAspect = img.naturalHeight / img.naturalWidth;
 
   // Correct for non-square characters
@@ -97,11 +98,14 @@ async function renderAscii() {
   container.style.transform = `scale(${scale})`;
 }
 
-function rerenderOnResize() {
-  renderAscii().catch(err => console.error(err));
-}
+let resizeTimer = null;
 
-window.addEventListener("resize", rerenderOnResize);
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderAscii().catch(console.error);
+  }, 150);
+});
 
 /* Start once DOM is ready */
 if (document.readyState === "loading") {
