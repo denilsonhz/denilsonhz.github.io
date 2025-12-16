@@ -3,10 +3,13 @@
  */
 const CONFIG = {
   imageUrl: "images/tree.png", 
-  cols: 260,                   
-  fontPx: 4,                   
-  charAspect: 1.4,             
-  densitySymbols: [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@", "█", "="]
+  cols: 200,                   
+  fontPx: 3.2,                   
+  charAspect: 1.2,             
+  densitySymbols: [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "&", "▒", "░"]
+  /** 
+  [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@", "█", "="]
+  */
 };
 
 /**
@@ -74,7 +77,31 @@ async function renderAscii() {
   }
 
   wrapper.appendChild(frag);
+
+  // ---- Fit-to-viewport scaling (keeps full tree visible at 100% zoom) ----
+  const container = document.getElementById("container");
+
+  // Reset any previous scale to measure the natural size
+  container.style.transform = "none";
+  container.style.transformOrigin = "top left";
+
+  const rect = container.getBoundingClientRect();
+  const padding = 24; // breathing room
+
+  const scaleX = (window.innerWidth - padding * 2) / rect.width;
+  const scaleY = (window.innerHeight - padding * 2) / rect.height;
+
+  // Don’t upscale above 1 (keeps it crisp and predictable)
+  const scale = Math.min(scaleX, scaleY, 1);
+
+  container.style.transform = `scale(${scale})`;
 }
+
+function rerenderOnResize() {
+  renderAscii().catch(err => console.error(err));
+}
+
+window.addEventListener("resize", rerenderOnResize);
 
 /* Start once DOM is ready */
 if (document.readyState === "loading") {
