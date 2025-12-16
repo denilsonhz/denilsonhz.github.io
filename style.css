@@ -68,3 +68,14 @@ body {
     margin-left: 4vw;
   }
 }
+
+/* Hide until JS marks it ready */
+#container {
+  opacity: 0;
+  transition: opacity 180ms ease;
+  will-change: transform, opacity;
+}
+
+#container.is-ready {
+  opacity: 1;
+}

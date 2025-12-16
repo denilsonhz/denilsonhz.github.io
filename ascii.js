@@ -31,7 +31,11 @@ function createSymbol(char, fontPx) {
 
 async function renderAscii() {
   const wrapper = document.getElementById("art-wrapper");
-  if (!wrapper) return;
+  const container = document.getElementById("container");
+  if (!wrapper || !container) return;
+
+  // Hide while building + scaling (prevents the snap/jump)
+  container.classList.remove("is-ready");
 
   const img = new Image();
   img.crossOrigin = "anonymous";
@@ -52,6 +56,8 @@ async function renderAscii() {
   const rows = Math.max(
     1,
     Math.round(cols * imgAspect * (1 / CONFIG.charAspect))
+
+
   );
 
   // Configure grid columns
@@ -80,9 +86,6 @@ async function renderAscii() {
 
   wrapper.appendChild(frag);
 
-  // ---- Fit-to-viewport scaling (scale wrapper so container can be translated in CSS) ----
-  const container = document.getElementById("container");
-
   // Reset wrapper transform for accurate measurement
   wrapper.style.transform = "none";
   wrapper.style.transformOrigin = "top left";
@@ -102,6 +105,11 @@ async function renderAscii() {
   // Shrink container footprint so you don't get unnecessary scrolling
   container.style.width = `${rect.width * scale}px`;
   container.style.height = `${rect.height * scale}px`;
+  // Reveal after final size/scale is applied to the DOM
+  requestAnimationFrame(() => {
+    container.classList.add("is-ready");
+  });
+  
 }
 
 let resizeTimer = null;
