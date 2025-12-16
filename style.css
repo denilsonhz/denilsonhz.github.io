@@ -1,0 +1,49 @@
+body {
+  background-color: #d6d6d6;
+  margin: 0;
+  padding: 20px;
+  color: #000;
+  text-align: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Center ASCII art */
+#container {
+  margin: 24px auto 0 auto;
+  width: fit-content;
+  height: fit-content;
+  pointer-events: none;
+}
+
+/* ASCII grid */
+#art-wrapper {
+  display: grid;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", monospace;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Single ASCII cell */
+.symbol {
+  width: 1ch;
+  height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+/* Scale down on very small screens */
+@media (max-width: 420px) {
+  #container {
+    position: fixed;
+    left: 50%;
+    top: 33vh;               /* 1/3 down the screen */
+    transform: translateX(-50%);
+    width: fit-content;
+    height: fit-content;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
