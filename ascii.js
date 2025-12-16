@@ -3,10 +3,10 @@
  */
 const CONFIG = {
   imageUrl: "images/tree.png", 
-  cols: 100,                   
-  fontPx: 7,                   
-  charAspect: 2.0,             
-  densitySymbols: [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@"]
+  cols: 160,                   
+  fontPx: 6,                   
+  charAspect: 1.4,             
+  densitySymbols: [" ", ".", ",", "-", "+", "(", "/", "*", "#", "&", "%", "@", "█", "="]
 };
 
 /**

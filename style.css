@@ -39,8 +39,8 @@ body {
 @media (max-width: 420px) {
   #container {
     position: fixed;
-    left: 50%;
-    top: 33vh;               /* 1/3 down the screen */
+    left: 33vw;
+    top: 45vh;               /* 1/3 down the screen */
     transform: translateX(-50%);
     width: fit-content;
     height: fit-content;
