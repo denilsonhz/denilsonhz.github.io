@@ -35,16 +35,23 @@ body {
   color: #000;
 }
 
+#container {
+  position: fixed;
+  left: 27vw;      /* target point: 1/3 across (left/right)*/
+  top: 52vh;       /* move (up/down)*/
+  transform: translate(-50%, -50%); /* center the art on that point */
+  width: fit-content;
+  height: fit-content;
+  pointer-events: none;
+  z-index: 1;
+  margin: 0;
+}
 /* Scale down on very small screens */
 @media (max-width: 420px) {
   #container {
-    position: fixed;
-    left: 30vw;
-    top: 45vh;               /* 1/3 down the screen */
-    transform: translateX(-50%);
-    width: fit-content;
-    height: fit-content;
-    pointer-events: none;
-    z-index: 1;
+    left: 50%;
+    top: 50vh;
+    transform: translateX(-50%) scale(0.78);
+    transform-origin: top center;
   }
 }
