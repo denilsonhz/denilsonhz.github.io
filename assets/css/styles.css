@@ -45,3 +45,8 @@ body::before {
   }
 }
 
+:root {
+  --bs-font-sans-serif: "Azeret Mono", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
