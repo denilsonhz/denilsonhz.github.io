@@ -10,33 +10,54 @@ body {
 }
 
 .noise-bg {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    width: 200%;
-    height: 200%;
-    /* This is the SVG grain texture encoded into CSS */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.025; /* Adjust this for more or less grain visibility */
-    z-index: -1; /* Keeps it behind your text and buttons */
-    pointer-events: none; /* Allows you to click things through the noise */
-    animation: noise-animation 0.2s steps(2) infinite;
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  z-index: -1;
+  pointer-events: none;
+  animation: noise-animation 0.2s steps(2) infinite;
 }
 
 @keyframes noise-animation {
-    0% { transform: translate(0,0); }
-    10% { transform: translate(-5%,-5%); }
-    20% { transform: translate(-10%,5%); }
-    30% { transform: translate(5%,-10%); }
-    40% { transform: translate(-5%,15%); }
-    50% { transform: translate(-10%,5%); }
-    60% { transform: translate(15%,0); }
-    70% { transform: translate(0,10%); }
-    80% { transform: translate(-15%,0); }
-    90% { transform: translate(10%,5%); }
-    100% { transform: translate(5%,0); }
+  0% {
+    transform: translate(0,0);
+  }
+  10% {
+    transform: translate(-5%,-5%);
+  }
+  20% {
+    transform: translate(-10%,5%);
+  }
+  30% {
+    transform: translate(5%,-10%);
+  }
+  40% {
+    transform: translate(-5%,15%);
+  }
+  50% {
+    transform: translate(-10%,5%);
+  }
+  60% {
+    transform: translate(15%,0);
+  }
+  70% {
+    transform: translate(0,10%);
+  }
+  80% {
+    transform: translate(-15%,0);
+  }
+  90% {
+    transform: translate(10%,5%);
+  }
+  100% {
+    transform: translate(5%,0);
+  }
 }
 
 :root {
@@ -54,5 +75,28 @@ body {
 
 .navbar-brand:hover, .navbar-brand:hover span {
   color: #ff4400 !important;
+}
+
+.profile-pic {
+  width: clamp(120px, 18vw, 220px);
+  height: clamp(120px, 18vw, 220px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about-title {
+  position: relative;
+  display: inline-block;
+}
+
+.about-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 3px;
+  background-color: #ff4400;
 }
 
