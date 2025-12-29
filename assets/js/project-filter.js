@@ -123,6 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const defaultBtn = document.querySelector('[data-filter="highlights"]');
+  const defaultBtn = document.querySelector('[data-filter="all"]');
   if (defaultBtn) defaultBtn.click();
 });
