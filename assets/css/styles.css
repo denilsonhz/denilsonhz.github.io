@@ -83,6 +83,7 @@ body {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
 }
 
 .about-title {
@@ -117,13 +118,13 @@ body {
 }
 
 /* Project card buttons hover / focus / active */
+
 #projects .btn {
-  transition: background-color 0.2s ease, 
-              border-color 0.2s ease, 
-              color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 #projects .btn:hover {
   background-color: #ff4400 !important;
   border-color: #ff4400 !important;
 }
+
