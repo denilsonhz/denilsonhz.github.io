@@ -44,8 +44,16 @@
                     <p class="text-muted mb-0" style="text-align: center;"><span style="color:rgb(255, 255, 255);">This is a collection of projects I completed for various purposes in various programming languages. Feel free to reach out for more information on any project :)</span></p>
                 </div>
             </div>
-            <div class="row g-4">
-                <div class="col-12 col-md-6 col-lg-4">
+            <!-- Filter tabs -->
+            <div class="project-filters d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <button type="button" class="filter-btn" data-filter="highlights">Highlights</button>
+            <button type="button" class="filter-btn active" data-filter="all">All</button>
+            <button type="button" class="filter-btn" data-filter="python">Python</button>
+            <button type="button" class="filter-btn" data-filter="data-science">Data Science</button>
+            <button type="button" class="filter-btn" data-filter="web">HTML/CSS, JS</button>
+            </div>
+            <div class="row g-4" projects-grid>
+                <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all web" data-highlight="true">
                     <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/bwyosemite.png" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Personal Website</span></h5>
@@ -55,7 +63,7 @@
                         <div class="card-footer bg-transparent border-0 pt-0"><a class="btn btn-dark btn-sm" role="button" href="#" style="background:#262626;border-width:1px;border-color:#262626;">View</a><a class="btn btn-outline-dark btn-sm" role="button" href="#" style="background:#262626;border-color:#262626;"><span style="color:rgb(255, 255, 255);">GitHub</span></a></div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all python" data-highlight="true">
                     <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/bwyosemite.png" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending Topic Detection</span></h5>
@@ -65,10 +73,30 @@
                         <div class="card-footer bg-transparent border-0 pt-0"><a class="btn btn-dark btn-sm" role="button" href="#" style="background:#262626;border-width:1px;border-color:#262626;">View PDF</a><a class="btn btn-outline-dark btn-sm" role="button" href="#" style="background:#262626;border-color:#262626;"><span style="color:rgb(255, 255, 255);">GitHub</span></a></div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science" data-highlight="false">
                     <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/bwyosemite.png" alt="Project 1 preview">
                         <div class="card-body">
-                            <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending Topic Detection</span></h5>
+                            <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending 1</span></h5>
+                            <p class="text-muted card-text"><span style="color:rgb(255, 255, 255);"> Spark pipeline implementing BN-Grams for large-scale social data. </span></p>
+                            <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light">Python</span><span class="badge text-bg-light">Spark</span><span class="badge text-bg-light">Databricks</span></div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0"><a class="btn btn-dark btn-sm" role="button" href="#" style="background:#262626;border-width:1px;border-color:#262626;">View PDF</a><a class="btn btn-outline-dark btn-sm" role="button" href="#" style="background:#262626;border-color:#262626;"><span style="color:rgb(255, 255, 255);">GitHub</span></a></div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all python" data-highlight="false">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/bwyosemite.png" alt="Project 1 preview">
+                        <div class="card-body">
+                            <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending 2</span></h5>
+                            <p class="text-muted card-text"><span style="color:rgb(255, 255, 255);"> Spark pipeline implementing BN-Grams for large-scale social data. </span></p>
+                            <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light">Python</span><span class="badge text-bg-light">Spark</span><span class="badge text-bg-light">Databricks</span></div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0"><a class="btn btn-dark btn-sm" role="button" href="#" style="background:#262626;border-width:1px;border-color:#262626;">View PDF</a><a class="btn btn-outline-dark btn-sm" role="button" href="#" style="background:#262626;border-color:#262626;"><span style="color:rgb(255, 255, 255);">GitHub</span></a></div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science" data-highlight="true">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/bwyosemite.png" alt="Project 1 preview">
+                        <div class="card-body">
+                            <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending 3</span></h5>
                             <p class="text-muted card-text"><span style="color:rgb(255, 255, 255);"> Spark pipeline implementing BN-Grams for large-scale social data. </span></p>
                             <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light">Python</span><span class="badge text-bg-light">Spark</span><span class="badge text-bg-light">Databricks</span></div>
                         </div>
@@ -111,6 +139,7 @@
         </div>
     </section>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/project-filter.js"></script>
 </body>
 
 </html>
