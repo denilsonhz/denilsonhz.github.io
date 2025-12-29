@@ -128,3 +128,13 @@ body {
   border-color: #ff4400 !important;
 }
 
+.connect-icons i {
+    font-size: 3rem;
+    color: #ffffff;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.connect-icon:hover i {
+    color: #ff4400;
+    transform: translateY(-3px);
+}
