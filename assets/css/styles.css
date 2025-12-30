@@ -284,7 +284,6 @@ body {
 }
 
 #projectFiltersToggle:hover,
-#projectFiltersToggle:active,
 #projectFiltersToggle:focus-visible {
   color: #ff4400;
   outline: none;              /* Removes default browser focus outline */
