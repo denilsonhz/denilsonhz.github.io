@@ -169,12 +169,18 @@ body {
   color: #ff4400;
 }
 
+/* Give space for the underline INSIDE the button */
+.project-filters .filter-btn{
+  padding: 6px 10px 10px; /* extra bottom padding */
+}
+
+/* Underline sits inside the button so it never gets clipped */
 .project-filters .filter-btn.active::after{
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -6px;
+  bottom: 2px;           /* inside the button now */
   height: 2px;
   background: #ff4400;
 }
@@ -245,3 +251,41 @@ body {
   margin: 0;
   opacity: 0.7;
 }
+
+/* ==============================
+   Collapsible project filters
+   ============================== */
+
+.project-filters {
+  /* This ensures extra buttons are actually hidden when the height shrinks */
+  overflow: hidden; 
+  /* Smooth animation */
+  transition: max-height 0.4s ease-out;
+}
+
+/* Optional: Ensures the toggle button looks clickable */
+#projectFiltersToggle {
+  background: transparent;
+  border: none;               /* Remove border */
+  padding: 0;                 /* Remove button padding */
+  color: #808080;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  
+  /* Flexbox to stack text and icon */
+  display: flex;
+  flex-direction: column;     /* Stacks text on top, icon on bottom */
+  align-items: center;        /* Centers them */
+  gap: 0;                   /* Space between word and symbol */
+  line-height: 1;
+  margin-top: 0;            
+  transition: color 0.2s ease;
+}
+
+#projectFiltersToggle:hover,
+#projectFiltersToggle:focus-visible {
+  color: #ff4400;
+  outline: none;              /* Removes default browser focus outline */
+}
+

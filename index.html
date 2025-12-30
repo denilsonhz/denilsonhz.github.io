@@ -45,17 +45,24 @@
                 </div>
             </div>
             <hr class="border-light opacity-25 mb-4">
-            <!-- Filter tabs -->
-            <div class="project-filters d-flex flex-wrap justify-content-center gap-3 mb-4">
-            <button type="button" class="filter-btn active" data-filter="all">All</button>
-            <button type="button" class="filter-btn" data-filter="highlights">Highlights</button>
-            <button type="button" class="filter-btn" data-filter="data-science">Data Science</button>
-            <button type="button" class="filter-btn" data-filter="python">Python</button>
-            <button type="button" class="filter-btn" data-filter="sql">SQL</button>
-            <button type="button" class="filter-btn" data-filter="mongo">MongoDB</button>
-            <button type="button" class="filter-btn" data-filter="web">HTML/CSS/JS</button>
+            <!-- Filter tabs (collapsible) -->
+            <div class="project-filters-wrap mb-4">
+                <div id="projectFilters" class="project-filters d-flex flex-wrap justify-content-center gap-3">
+                    <button type="button" class="filter-btn active" data-filter="all">All</button>
+                    <button type="button" class="filter-btn" data-filter="highlights">Highlights</button>
+                    <button type="button" class="filter-btn" data-filter="data-science">Data Science</button>
+                    <button type="button" class="filter-btn" data-filter="python">Python</button>
+                    <button type="button" class="filter-btn" data-filter="sql">SQL</button>
+                    <button type="button" class="filter-btn" data-filter="mongo">MongoDB</button>
+                    <button type="button" class="filter-btn" data-filter="web">HTML/CSS/JS</button>
+                </div>
+                <!-- Divider + toggle only appear when there is more than one row of tabs -->
+                <hr id="projectFiltersDivider" class="border-light opacity-25 my-1 d-none">
+                <div class="d-flex justify-content-center">
+                    <button id="projectFiltersToggle" type="button" class="project-filters-toggle d-none" aria-expanded="false">More</button>
+                </div>
             </div>
-            <div class="row g-4" projects-grid>
+            <div class="row g-4 projects-grid">
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all web" data-highlight="true">
                     <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/website.png" alt="Personnal Website Preview">
                         <div class="card-body">

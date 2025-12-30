@@ -1,5 +1,9 @@
-// assets/js/project-filter.js
+/* ==============================
+    Filter Projects by Category
+   ============================== */
 document.addEventListener("DOMContentLoaded", () => {
+  const filtersEl = document.getElementById("projectFilters");
+  const toggle = document.getElementById("projectFiltersToggle");
   const controls = document.querySelectorAll("[data-filter]");
   const items = Array.from(document.querySelectorAll(".project-item"));
   const grid = document.querySelector(".projects-grid");
@@ -118,11 +122,125 @@ document.addEventListener("DOMContentLoaded", () => {
   controls.forEach((control) => {
     control.addEventListener("click", () => {
       const filter = control.getAttribute("data-filter") || "all";
+      
+      // 1. Activate the filter (standard logic)
       setActive(control);
       filterTo(filter);
+
+      // 2. SMART EXPAND LOGIC
+      // If the menu is currently collapsed (showing "More")...
+      if (toggle && filtersEl) {
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      
+        if (!isExpanded) {
+          // ...and the clicked button is in the 2nd row or lower...
+          const containerTop = filter.offsetTop;
+          const buttonTop = control.offsetTop;
+          
+          // (We use a 50px threshold to determine if it's below the first row)
+          if (buttonTop - containerTop > 50) {
+            // ...Force the menu to open so the user can see their selection.
+            toggle.click(); 
+          }
+        }
+      }
+
+      // 3. Re-calculate layout
+      if (typeof resize === "function") {
+        resize();
+      }
     });
   });
+});
 
-  const defaultBtn = document.querySelector('[data-filter="all"]');
-  if (defaultBtn) defaultBtn.click();
+/* ==============================
+   Collapsible filter bar logic
+   ============================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filters = document.getElementById("projectFilters");
+  const toggle = document.getElementById("projectFiltersToggle");
+  const divider = document.getElementById("projectFiltersDivider");
+
+  if (!filters || !toggle || !divider) return;
+
+  function getFirstRowHeight() {
+    const buttons = Array.from(filters.querySelectorAll(".filter-btn"));
+    if (!buttons.length) return 0;
+
+    // We need the position of the container itself to normalize coordinates
+    const containerTop = filters.offsetTop;
+    const firstBtnTop = buttons[0].offsetTop;
+    
+    let maxBottomRelative = 0;
+
+    for (const btn of buttons) {
+      // Check if button is on the first row (within 15px tolerance)
+      if (Math.abs(btn.offsetTop - firstBtnTop) < 15) {
+        
+        // CRITICAL FIX: Subtract containerTop to get height relative to the div, not the page
+        const bottomRelative = (btn.offsetTop - containerTop) + btn.offsetHeight;
+        
+        if (bottomRelative > maxBottomRelative) {
+          maxBottomRelative = bottomRelative;
+        }
+      } else {
+        break; // Stop once we hit a new row
+      }
+    }
+    return maxBottomRelative;
+  }
+
+  function resize() {
+    const buttons = filters.querySelectorAll(".filter-btn");
+    if (buttons.length === 0) return;
+
+    // 1. Reset to natural height for measurement
+    filters.style.maxHeight = "none";
+    
+    // 2. Measure wrapping
+    const firstBtn = buttons[0];
+    const lastBtn = buttons[buttons.length - 1];
+    const isWrapping = lastBtn.offsetTop > (firstBtn.offsetTop + 10);
+
+    if (isWrapping) {
+      toggle.classList.remove("d-none");
+      divider.classList.remove("d-none");
+
+      const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+
+      if (isExpanded) {
+        filters.style.maxHeight = filters.scrollHeight + "px";
+        
+        // UPDATE THIS LINE: Text + Up Arrow (Inverse V)
+        toggle.innerHTML = '<i class="bi bi-chevron-up"></i> less';
+        
+      } else {
+        const rowHeight = getFirstRowHeight();
+        filters.style.overflow = "hidden"; 
+        filters.style.maxHeight = (rowHeight + 10) + "px";
+        
+        // UPDATE THIS LINE: Text + Down Arrow (V)
+        toggle.innerHTML = 'more <i class="bi bi-chevron-down"></i>';
+      }
+    } else {
+      // Single row mode
+      toggle.classList.add("d-none");
+      divider.classList.add("d-none");
+      filters.style.maxHeight = "none";
+      filters.style.overflow = "visible"; 
+    }
+  }
+
+  toggle.addEventListener("click", () => {
+    const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", !isExpanded);
+    resize();
+  });
+
+  window.addEventListener("resize", resize);
+  window.addEventListener("load", () => setTimeout(resize, 100));
+  
+  // Initial run
+  resize();
 });
