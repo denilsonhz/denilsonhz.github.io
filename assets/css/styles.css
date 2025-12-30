@@ -283,9 +283,4 @@ body {
   transition: color 0.2s ease;
 }
 
-#projectFiltersToggle:hover,
-#projectFiltersToggle:active {
-  color: #ff4400;
-  outline: none;              /* Removes default browser focus outline */
-}
 
