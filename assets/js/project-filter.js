@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     control.addEventListener("click", () => {
       const filter = control.getAttribute("data-filter") || "all";
       
-      // 1. Activate the filter (standard logic)
       setActive(control);
       filterTo(filter);
 
@@ -133,13 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const isExpanded = toggle.getAttribute("aria-expanded") === "true";
       
         if (!isExpanded) {
-          // ...and the clicked button is in the 2nd row or lower...
           const containerTop = filter.offsetTop;
           const buttonTop = control.offsetTop;
           
-          // (We use a 50px threshold to determine if it's below the first row)
           if (buttonTop - containerTop > 50) {
-            // ...Force the menu to open so the user can see their selection.
             toggle.click(); 
           }
         }
@@ -175,10 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let maxBottomRelative = 0;
 
     for (const btn of buttons) {
-      // Check if button is on the first row (within 15px tolerance)
       if (Math.abs(btn.offsetTop - firstBtnTop) < 15) {
         
-        // CRITICAL FIX: Subtract containerTop to get height relative to the div, not the page
         const bottomRelative = (btn.offsetTop - containerTop) + btn.offsetHeight;
         
         if (bottomRelative > maxBottomRelative) {
@@ -212,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isExpanded) {
         filters.style.maxHeight = filters.scrollHeight + "px";
         
-        // UPDATE THIS LINE: Text + Up Arrow (Inverse V)
         toggle.innerHTML = '<i class="bi bi-chevron-up"></i> less';
         
       } else {
@@ -220,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         filters.style.overflow = "hidden"; 
         filters.style.maxHeight = (rowHeight + 10) + "px";
         
-        // UPDATE THIS LINE: Text + Down Arrow (V)
         toggle.innerHTML = 'more <i class="bi bi-chevron-down"></i>';
       }
     } else {
