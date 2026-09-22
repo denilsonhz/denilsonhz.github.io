@@ -2,8 +2,6 @@
     Filter Projects by Category
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const filtersEl = document.getElementById("projectFilters");
-  const toggle = document.getElementById("projectFiltersToggle");
   const controls = document.querySelectorAll("[data-filter]");
   const items = Array.from(document.querySelectorAll(".project-item"));
   const grid = document.querySelector(".projects-grid");
@@ -16,8 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const DURATION_MS = 300;
 
   function setActive(clicked) {
-    controls.forEach((c) => c.classList.remove("active"));
-    clicked.classList.add("active");
+    controls.forEach((control) => {
+      const selected = control === clicked;
+      control.classList.toggle("active", selected);
+      control.setAttribute("aria-pressed", String(selected));
+    });
   }
 
   function getTags(el) {
@@ -52,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const clone = el.cloneNode(true);
     clone.classList.add("leaving-clone");
+    clone.setAttribute("aria-hidden", "true");
+    clone.inert = true;
     clone.style.position = "absolute";
     clone.style.margin = "0";
     clone.style.left = `${r.left - gridRect.left}px`;
@@ -126,25 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setActive(control);
       filterTo(filter);
 
-      // 2. SMART EXPAND LOGIC
-      // If the menu is currently collapsed (showing "More")...
-      if (toggle && filtersEl) {
-        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
-      
-        if (!isExpanded) {
-          const containerTop = filter.offsetTop;
-          const buttonTop = control.offsetTop;
-          
-          if (buttonTop - containerTop > 50) {
-            toggle.click(); 
-          }
-        }
-      }
 
-      // 3. Re-calculate layout
-      if (typeof resize === "function") {
-        resize();
-      }
     });
   });
 });
@@ -223,6 +208,21 @@ document.addEventListener("DOMContentLoaded", () => {
       filters.style.overflow = "visible"; 
     }
   }
+
+  // Reveal wrapped controls when keyboard focus or selection reaches them.
+  function revealControl(event) {
+    const control = event.target.closest(".filter-btn");
+    if (!control || toggle.getAttribute("aria-expanded") === "true") return;
+
+    const firstButton = filters.querySelector(".filter-btn");
+    if (control.offsetTop > firstButton.offsetTop + 10) {
+      toggle.setAttribute("aria-expanded", "true");
+      resize();
+    }
+  }
+
+  filters.addEventListener("focusin", revealControl);
+  filters.addEventListener("click", revealControl);
 
   toggle.addEventListener("click", () => {
     const isExpanded = toggle.getAttribute("aria-expanded") === "true";

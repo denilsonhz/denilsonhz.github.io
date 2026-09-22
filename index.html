@@ -28,7 +28,7 @@
     <section id="about-me" class="mt-5 container-fluid about-section">
         <div class="row align-items-center" style="padding:0px;margin:0px;">
             <div class="col-md-4 d-flex justify-content-center mb-4 mb-md-0">
-                <div class="portrait-wrap"><img class="profile-pic" alt="profile_picture" src="assets/img/denilson.png"></div>
+                <div class="portrait-wrap"><img class="profile-pic" alt="profile_picture" src="assets/img/denilson.webp" width="440" height="341"></div>
             </div>
             <div class="col-md-8 about-text">
                 <h2 class="mb-3 about-title"><span style="color: rgb(255, 255, 255);font-family: 'Bakbak One', serif;">About Me</span></h2>
@@ -48,23 +48,23 @@
             <!-- Filter tabs (collapsible) -->
             <div class="project-filters-wrap mb-4">
                 <div id="projectFilters" class="project-filters d-flex flex-wrap justify-content-center gap-3">
-                    <button type="button" class="filter-btn active" data-filter="all">All</button>
-                    <button type="button" class="filter-btn" data-filter="highlights">Highlights</button>
-                    <button type="button" class="filter-btn" data-filter="data-science">Data Science</button>
-                    <button type="button" class="filter-btn" data-filter="python">Python</button>
-                    <button type="button" class="filter-btn" data-filter="sql">SQL</button>
-                    <button type="button" class="filter-btn" data-filter="mongo">MongoDB</button>
-                    <button type="button" class="filter-btn" data-filter="web">HTML/CSS/JS</button>
+                    <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" class="filter-btn" data-filter="highlights" aria-pressed="false">Highlights</button>
+                    <button type="button" class="filter-btn" data-filter="data-science" aria-pressed="false">Data Science</button>
+                    <button type="button" class="filter-btn" data-filter="python" aria-pressed="false">Python</button>
+                    <button type="button" class="filter-btn" data-filter="sql" aria-pressed="false">SQL</button>
+                    <button type="button" class="filter-btn" data-filter="mongo" aria-pressed="false">MongoDB</button>
+                    <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">HTML/CSS/JS</button>
                 </div>
                 <!-- Divider + toggle only appear when there is more than one row of tabs -->
                 <hr id="projectFiltersDivider" class="border-light opacity-25 my-1 d-none">
                 <div class="d-flex justify-content-center">
-                    <button id="projectFiltersToggle" type="button" class="project-filters-toggle d-none" aria-expanded="false">More</button>
+                    <button id="projectFiltersToggle" aria-controls="projectFilters" type="button" class="project-filters-toggle d-none" aria-expanded="false">More</button>
                 </div>
             </div>
             <div class="row g-4 projects-grid">
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all web" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/website.png" alt="Personnal Website Preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/website.webp" width="1200" height="578" loading="lazy" decoding="async" alt="Personnal Website Preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Personal Website</span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);">I self-taught HTML/CSS/JavaScript and Bootstrap Studio software in order to create my personal website.</span></p>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all python data-science" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/trending.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/trending.webp" width="1200" height="267" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);">Trending Topic Detection</span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Implementation of the BN-Grams algorithm, following a published research paper, to detect trending topics in English from multilingual tweet streams. <br> <br> I self-taught some NLP theory in order to complete this project. </span></p>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/flights.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/flights.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Flight Routing - Mixed Integer Linear Program </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Profit optimization model for aircraft and crew assignments with geographical and temporal constraints </span></p>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science sql" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/smart_buildings.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/smart_buildings.webp" width="1200" height="677" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Smart-Building Sensor Data ETL Pipeline </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Scalable pipeline to clean, process, perform granular transformations, and interpolate sensor data using PotsgreSQL </span></p>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science python" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/kaggle.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/kaggle.webp" width="560" height="280" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Kaggle Classification Challenge Competition </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Pipeline and machine learning model, tuning hyperparameters and enhancing quality of a noisy dataset for prediction</span></p>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science python" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/housing_prices.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/housing_prices.webp" width="1000" height="668" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Housing Data Exploration and Linear Model Prediction </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Extraction of predictive features using EDA to build a predictive model for house pricing </span></p>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science mongo" data-highlight="true">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/yelp.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/yelp.webp" width="250" height="101" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> NoSQL Data Mining and Analysis on Yelp Academic Dataset  </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Conducted complex aggregations and data cleaning on a NoSQL data architecture using MongoDB to manage semi-structured JSON from the Yelp Academic Dataset </span></p>
@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science python" data-highlight="false">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/spam.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/spam.webp" width="800" height="324" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Spam Classifier </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Utilized linear regression and sci-kit learn to classify emails based on keywords. Employed cross validation to ensure high accuracy (87.8%)</span></p>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science sql" data-highlight="false">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/imdb.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/imdb.webp" width="800" height="487" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> Advanced SQL Analytics on IMDb Database </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Developed SQL queries to clean and analyze the IMDb database, leveraging advanced PostgreSQL functions, regex, and relational joins to extract insights from millions of records </span></p>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 project-item" data-tags="all data-science sql" data-highlight="false">
-                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/baseball.png" alt="Project 1 preview">
+                    <div class="card h-100 shadow-sm" style="background:#171717;border-color:#171717;"><img class="card-img-top w-100 d-block card-img-top card-img-top card-img-top" src="assets/img/baseball.webp" width="550" height="364" loading="lazy" decoding="async" alt="Project 1 preview">
                         <div class="card-body">
                             <h5 class="mb-2 card-title"><span style="color:rgb(255, 255, 255);"> SQL Performance Engineering </span></h5>
                             <p class="text-muted card-text opacity-75"><span style="color:rgb(255, 255, 255);"> Optimized relational queries using PostgreSQL evaluating the cost-benefit trade-offs between various join algorithms, scan types, and indexing strategies on historical baseball dataset</span></p>
