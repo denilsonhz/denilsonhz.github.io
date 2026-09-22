@@ -284,3 +284,8 @@ body {
 }
 
 
+
+/* Reserve image space while preserving responsive project previews. */
+.card-img-top {
+  height: auto;
+}
